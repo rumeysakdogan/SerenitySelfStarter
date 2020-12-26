@@ -1,4 +1,4 @@
-package utility;
+package serenity.utility;
 
 import java.io.FileInputStream;
 import java.io.IOException;

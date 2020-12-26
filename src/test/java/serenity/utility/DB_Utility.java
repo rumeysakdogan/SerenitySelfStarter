@@ -1,4 +1,4 @@
-package utility;
+package serenity.utility;
 
 import java.sql.*;
 import java.util.ArrayList;

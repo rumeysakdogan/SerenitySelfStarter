@@ -1,9 +1,10 @@
-package testbase;
+package serenity.testBase;
 
 import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
-import utility.ConfigurationReader;
+import serenity.utility.ConfigurationReader;
+
 import static io.restassured.RestAssured.*;
 
 

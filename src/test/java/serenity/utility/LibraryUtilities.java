@@ -1,10 +1,10 @@
-package utility;
+package serenity.utility;
 
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 
-import static io.restassured.RestAssured.* ;
+import static io.restassured.RestAssured.given;
 
 public class LibraryUtilities {
 
@@ -32,7 +32,7 @@ public class LibraryUtilities {
         Response jsonResponse  = given()
                 .contentType(ContentType.URLENC)
                 .formParam("email", ConfigurationReader.getProperty(env + ".librarian.username") )
-                .formParam("password",ConfigurationReader.getProperty(env + ".librarian.password") ).
+                .formParam("password", ConfigurationReader.getProperty(env + ".librarian.password") ).
                         when()
                 .post("/login");
 
