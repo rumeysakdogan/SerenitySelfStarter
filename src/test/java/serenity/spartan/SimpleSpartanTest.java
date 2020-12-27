@@ -4,6 +4,7 @@ import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import net.serenitybdd.junit5.SerenityTest;
 import net.serenitybdd.rest.Ensure;
+import net.serenitybdd.rest.SerenityRest;
 import org.junit.jupiter.api.*;
 
 import serenity.utility.SpartanUtil;
@@ -12,8 +13,7 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import static net.serenitybdd.rest.SerenityRest.*;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.lessThan;
+import static org.hamcrest.Matchers.*;
 
 
 @SerenityTest
@@ -27,7 +27,8 @@ public class SimpleSpartanTest {
 
     @AfterAll
     public static void cleanUp() {
-        reset();
+        RestAssured.reset();
+        SerenityRest.clear();
     }
 
     @DisplayName("Testing GET /api/hello Endpoint")
@@ -52,28 +53,12 @@ public class SimpleSpartanTest {
                         response -> response .contentType(ContentType.TEXT) )
                 .andThat("I got Hello from Sparta",
                         response -> response.body(is("Hello from Sparta")))
-                .andThat(": \"Response time was less than 2 sn\"",
+                .andThat("Response time was less than 2 sn",
                         response -> response.time( lessThan(2L), TimeUnit.SECONDS  ) )
                 ;
 
     }
 
-    @DisplayName("Admin User Should be able to Add Spartan")
-    @Test
-    public void testAdd1Data(){
-
-        Map<String, Object> payload = SpartanUtil.getRandomSpartanRequestPayload();
-
-        given()
-                .auth().basic("admin","admin")
-                .contentType( ContentType.JSON)
-                .body( payload ).
-        when()
-                .post("/spartans");
-
-        Ensure.that("Request was successful",
-                 response -> response.statusCode(is(201)));
-    }
 
 
 }
