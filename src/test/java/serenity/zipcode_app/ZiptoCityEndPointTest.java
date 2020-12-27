@@ -9,6 +9,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 
@@ -47,10 +48,9 @@ public class ZiptoCityEndPointTest {
 
     }
 
-    @DisplayName("Testing multiple zipcodes and get the result")
-    @ParameterizedTest
+    @ParameterizedTest(name = "Iteration number {index} zipcode is {arguments} ")
     @ValueSource(strings ={"22030","22031", "22032", "87123","22035"})
-    public void testZipCodes(String zip){
+    public void testZipCodes(String zip) {
         System.out.println("zip = " + zip);
 
         given()
@@ -63,4 +63,21 @@ public class ZiptoCityEndPointTest {
                 v -> v.statusCode(is(200)));
     }
 
+    /**
+     * {index} -->> to represent iteration number
+     * {arguments} -->>
+     * {methodParameterIndexNumber} -->> {0}, {1} ,{2}
+     *
+     */
+    @ParameterizedTest(name = "\uD83D\uDC4DIteration number {index} zipcode is {arguments} 😀 ")
+    @ValueSource(strings ={"22030","22031", "22032", "87123","22035"})
+    public void testDisplayNameManipulation(String zip) {
+
+    }
+
+    @ParameterizedTest( name = "\uD83C\uDF3AIteration number {index} \uD83C\uDF38Country is {0}\uD83C\uDF37, Zipcode is {1}")
+    @CsvFileSource(resources = "/country_zip.csv" , numLinesToSkip = 1)
+    public void testCountryZip(String country, int zipcode){
+
+    }
 }
