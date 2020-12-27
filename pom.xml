@@ -26,14 +26,11 @@
             <artifactId>serenity-rest-assured</artifactId>
             <version> 2.3.9</version>
         </dependency>
-
         <dependency>
             <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <version>5.7.0</version>
-            <scope>test</scope>
+            <artifactId>junit-jupiter</artifactId>
+            <version> 5.7.0</version>
         </dependency>
-
         <dependency>
             <groupId>io.github.fabianlinz</groupId>
             <artifactId>serenity-junit5</artifactId>
