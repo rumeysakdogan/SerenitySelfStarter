@@ -1,19 +1,31 @@
 package serenity;
 
 import net.serenitybdd.junit5.SerenityTest;
+import net.thucydides.core.annotations.Step;
+import net.thucydides.core.annotations.Steps;
+import net.thucydides.core.annotations.WithTag;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import serenity.steps.B20Action;
 
 @SerenityTest
+@Tag("voila")
 public class VoilaTest {
+
+    @Steps
+    B20Action tucky;
 
     @Test
     public void testVoila(){
+        //GIVEN
+        tucky.preparedSomething();
 
-        // B20USER preparedSomething
+        //WHEN
+        tucky.takeAnAction();
 
-        // B20USER takeAnAction
+        //THEN
+        tucky.expectSomeResult();
 
-        // B20USER expectSomeResult
 
 
     }
