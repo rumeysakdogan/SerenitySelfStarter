@@ -3,15 +3,21 @@ package serenity.utility;
 import net.serenitybdd.core.environment.EnvironmentSpecificConfiguration;
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.util.EnvironmentVariables;
+import net.thucydides.core.util.SystemEnvironmentVariables;
 
 public class ConfigReader {
 
-    private EnvironmentVariables environmentVariables;
+    private static EnvironmentVariables environmentVariables ;
+    static {
+        environmentVariables =
+                SystemEnvironmentVariables.createEnvironmentVariables();
+    }
 
-    @Step
-    public String getProperty(String propertyName){
+    public static String getProperty(String propertyName){
 
-        return EnvironmentSpecificConfiguration.from(environmentVariables)
+        return EnvironmentSpecificConfiguration
+                .from(environmentVariables)
                 .getProperty(propertyName);
+
     }
 }
